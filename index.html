@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة المستثمرين | مركز التوأم الرقمي لمزرعة المغاني</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet GIS Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-seedling logo-icon"></i>
+            <span>مزرعة المَغَانِي <small>شركة بارا للإنتاج الحيواني والزراعي والداجني</small></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#hero" class="active"><i class="fa-solid fa-house"></i> الرئيسة</a></li>
+            <li><a href="#kpis"><i class="fa-solid fa-chart-line"></i> المؤشرات</a></li>
+            <li><a href="#workflow"><i class="fa-solid fa-diagram-project"></i> التدفقات</a></li>
+            <li><a href="#files"><i class="fa-solid fa-folder-open"></i> دليل الملفات</a></li>
+            <li><a href="#map"><i class="fa-solid fa-map-location-dot"></i> الخريطة الجغرافية</a></li>
+        </ul>
+        <div class="badge">
+            <span class="status-dot"></span> نسخة المستثمرين النشطة
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <span class="sub-title"><i class="fa-solid fa-star"></i> التوأم الرقمي وبنية العمليات الرقمية</span>
+                <h1>منظومة الإدارة المتكاملة لمزرعة المَغَانِي</h1>
+                <p>مرحباً بكم في منصة العرض التفاعلية المخصصة للملاك والمستثمرين لمتابعة <strong>مرحلة التطوير وإعادة التأهيل الشاملة</strong>. هنا نستعرض كيف تترابط برمجيات الهندسة والرفع المساحي والنمذجة ثلاثية الأبعاد مع قواعد البيانات المالية لتأسيس شبكات ري حديثة وبنية تحتية متطورة لإدارة 32 فداناً مملوكة لشركة بارا للإنتاج الحيواني والزراعي والداجني.</p>
+                <div class="hero-actions">
+                    <a href="#workflow" class="btn btn-primary"><i class="fa-solid fa-compass"></i> استكشف مسارات العمل التفاعلية</a>
+                    <a href="#files" class="btn btn-secondary"><i class="fa-solid fa-download"></i> تصفح خريطة الملفات</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="tree-container">
+                    <i class="fa-solid fa-tree tree-icon"></i>
+                    <div class="pulse-ring"></div>
+                    <div class="pulse-ring delay-1"></div>
+                    <div class="pulse-ring delay-2"></div>
+                </div>
+                <div class="floating-card c1">
+                    <i class="fa-solid fa-cube text-red"></i>
+                    <div>
+                        <h4>Revit 3D</h4>
+                        <p>نمذجة المنشآت</p>
+                    </div>
+                </div>
+                <div class="floating-card c2">
+                    <i class="fa-solid fa-database text-blue"></i>
+                    <div>
+                        <h4>ERP DB</h4>
+                        <p>قواعد البيانات</p>
+                    </div>
+                </div>
+                <div class="floating-card c3">
+                    <i class="fa-solid fa-map-location text-gold"></i>
+                    <div>
+                        <h4>GIS Maps</h4>
+                        <p>الرفع المساحي</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KPIs Section -->
+        <section id="kpis" class="kpis-section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-screwdriver-wrench"></i> مؤشرات خطة التطوير وإعادة التأهيل</h2>
+                <p>أرقام سريعة تلخص البنية التحتية الجاري إنشاؤها وتأهيلها في مزرعة شركة بارا للإنتاج الحيواني والزراعي والداجني</p>
+            </div>
+            <div class="kpis-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-maximize"></i></div>
+                    <h3>المساحة الإجمالية للتطوير</h3>
+                    <div class="kpi-value">32 فداناً</div>
+                    <p>المساحة الشاملة لأحواض المانجو والموالح والزيتون الخاضعة للتحديث</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <h3>شبكة الري بالتنقيط</h3>
+                    <div class="kpi-value">مستهدف 100% ري حديث</div>
+                    <p>تصميم شبكة Netafim ثنائية الخطوط (double-line) ومحابس تحكم Bermad</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-water"></i></div>
+                    <h3>تبطين أحواض المياه</h3>
+                    <div class="kpi-value">10,000 م³</div>
+                    <p>تأهيل وتبطين حوض تجميع المياه الرئيسي (A وB2) بمادة بولي إيثيلين HDPE لمنع التسرب</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <h3>الجدول الزمني للتطوير</h3>
+                    <div class="kpi-value">36 شهراً بالتكامل</div>
+                    <p>خطة تشغيلية متكاملة مقسمة لمراحل تأهيل شبكات المياه وبدء التصدير</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section id="workflow" class="workflow-section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-diagram-project"></i> كيف تعمل المنظومة البرمجية؟ (التدفقات الآلية)</h2>
+                <p>اضغط على أي ركيزة أدناه لترى كيف تتحول البيانات من فكرة في ذهن المهندس إلى تقارير وحقائق يراها المستثمر</p>
+            </div>
+            
+            <div class="workflow-tabs">
+                <button class="tab-btn active" data-tab="cost-pipeline">
+                    <i class="fa-solid fa-coins"></i> مسار التكاليف والميزانية
+                </button>
+                <button class="tab-btn" data-tab="bim-pipeline">
+                    <i class="fa-solid fa-drafting-compass"></i> مسار الرفع المساحي والـ BIM
+                </button>
+                <button class="tab-btn" data-tab="gis-pipeline">
+                    <i class="fa-solid fa-map-location-dot"></i> مسار الخرائط الجغرافية والـ GIS
+                </button>
+            </div>
+
+            <div class="tab-content active" id="cost-pipeline">
+                <div class="pipeline-flow">
+                    <div class="step">
+                        <span class="step-num">1</span>
+                        <h4>جداول كميات الأسعار</h4>
+                        <p>صياغة البنود والمقايسات على ملفات Excel (مثل قطع ري المانجو أو حفر الأحواض).</p>
+                        <span class="file-tag"><i class="fa-regular fa-file-excel"></i> Excel BoQ</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">2</span>
+                        <h4>سكربتات الأتمتة (PowerShell)</h4>
+                        <p>تشغيل سكربت `bulk_inject_boq.ps1` لقراءة بيانات Excel وحقنها تلقائياً.</p>
+                        <span class="file-tag"><i class="fa-solid fa-code"></i> PowerShell</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">3</span>
+                        <h4>قاعدة البيانات المركزية</h4>
+                        <p>حفظ وعنونة بنود التكاليف والمخزون بترميز داخلي فريد داخل قاعدة بيانات Access.</p>
+                        <span class="file-tag"><i class="fa-solid fa-database"></i> Access ERP</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">4</span>
+                        <h4>المخرجات والتقارير المالية</h4>
+                        <p>توليد طلبات عروض أسعار (RFQ) وتقارير مصاريف تشغيل الربيع معمدة للمستثمرين.</p>
+                        <span class="file-tag"><i class="fa-regular fa-file-pdf"></i> PDF Reports</span>
+                    </div>
+                </div>
+                <div class="pipeline-desc card">
+                    <h3><i class="fa-solid fa-circle-info"></i> أهمية هذا المسار للملاك والمستثمرين</h3>
+                    <p>يضمن هذا المسار دقة مالية بنسبة 100%. لا مجال للخطأ البشري في إدخال الفواتير وأسعار قطع الغيار يدوياً. كل قرش يتم صرفه على بنود شبكة الري أو صيانة الحوض يسجل تلقائياً وينعكس في التقارير المالية والتحليلات الفورية لمصاريف المزرعة.</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="bim-pipeline">
+                <div class="pipeline-flow">
+                    <div class="step">
+                        <span class="step-num">1</span>
+                        <h4>نقاط الرفع المساحي</h4>
+                        <p>يتم رفع النقاط الميدانية للمزرعة عبر أجهزة GPS وتصديرها بصيغة CSV.</p>
+                        <span class="file-tag"><i class="fa-regular fa-file-lines"></i> Points CSV</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">2</span>
+                        <h4>أتمتة أوتوكاد (LISP)</h4>
+                        <p>سكربت `IMPORT_SURVEY_POINTS.LSP` يرسم آلاف نقاط التضاريس والشبكات فورياً.</p>
+                        <span class="file-tag"><i class="fa-solid fa-terminal"></i> AutoLISP</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">3</span>
+                        <h4>Civil 3D & CAD Surfaces</h4>
+                        <p>توليد خطوط الكنتور وتحديد تضاريس الأحواض وتمديدات محابس شبكة الري الرئيسية.</p>
+                        <span class="file-tag"><i class="fa-solid fa-compass-drafting"></i> Civil 3D DWG</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">4</span>
+                        <h4>التوأم الرقمي Revit 3D</h4>
+                        <p>إدخال الأسطح هندسياً لبناء نموذج مجسم شامل ومحاكاة محطة الفلترة وغرف التشغيل.</p>
+                        <span class="file-tag"><i class="fa-solid fa-cube"></i> Revit RVT</span>
+                    </div>
+                </div>
+                <div class="pipeline-desc card">
+                    <h3><i class="fa-solid fa-circle-info"></i> كيف يخدم هذا الملاك والمستثمرين؟</h3>
+                    <p>يمكّن هذا النموذج الملاك من رؤية مجسم ثلاثي الأبعاد للمزرعة ومحطة الفلترة قبل الحفر والتركيب الفعلي. يساعد في كشف التعارضات الهندسية بين خطوط المياه والكهرباء وتوفير آلاف الجنيهات المهدرة في التعديلات الميدانية.</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="gis-pipeline">
+                <div class="pipeline-flow">
+                    <div class="step">
+                        <span class="step-num">1</span>
+                        <h4>تصدير الحدود الجغرافية</h4>
+                        <p>استخراج مساحات الأحواض الزراعية من لوحات الهندسة بصيغة KML.</p>
+                        <span class="file-tag"><i class="fa-solid fa-earth-americas"></i> Boundary KML</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">2</span>
+                        <h4>محرك الخرائط (Python)</h4>
+                        <p>سكربت `generate_map.py` يقرأ الإحداثيات ويقوم بربط البيانات والترميز اللوني.</p>
+                        <span class="file-tag"><i class="fa-brands fa-python"></i> Python Engine</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">3</span>
+                        <h4>ربط الأقمار الصناعية</h4>
+                        <p>ربط الحدود والبيانات التشغيلية مع خرائط الأقمار الصناعية من Google.</p>
+                        <span class="file-tag"><i class="fa-solid fa-cloud-sun"></i> Satellite API</span>
+                    </div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="step">
+                        <span class="step-num">4</span>
+                        <h4>الخريطة التفاعلية</h4>
+                        <p>إنشاء لوحة ويب جغرافية تمكّنك من استعراض المزرعة ومحابسها من الجوال بضغطة زر.</p>
+                        <span class="file-tag"><i class="fa-regular fa-window-maximize"></i> Leaflet Web Map</span>
+                    </div>
+                </div>
+                <div class="pipeline-desc card">
+                    <h3><i class="fa-solid fa-circle-info"></i> ميزة التواجد الجغرافي للملاك</h3>
+                    <p>أينما كنت في العالم، يمكنك فتح خريطة المزرعة التفاعلية ورؤية الحوض الزراعي، نوع الأشجار فيه، تاريخ آخر صيانة للري، وأسماء الفنيين المسؤولين عن كل قطاع بشكل حي وجغرافي متكامل.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- File Map Explorer Section -->
+        <section id="files" class="files-section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-folder-tree"></i> مستكشف ملفات وأصول مزرعة المغاني</h2>
+                <p>خريطة المجلدات والملفات المنظمة في حاسوب العمل لتسريع إنهاء عمليات التطوير</p>
+            </div>
+            
+            <div class="files-layout">
+                <div class="files-sidebar">
+                    <ul class="folder-list">
+                        <li class="folder-item active" data-folder="f-docs">
+                            <i class="fa-solid fa-file-shield"></i> <span>الأدلة التنفيذية والحدود المساحية</span>
+                        </li>
+                        <li class="folder-item" data-folder="f-finance">
+                            <i class="fa-solid fa-file-invoice-dollar"></i> <span>جداول الكميات والدراسات المالية</span>
+                        </li>
+                        <li class="folder-item" data-folder="f-erp">
+                            <i class="fa-solid fa-gears"></i> <span>قواعد البيانات وسكربتات الأتمتة</span>
+                        </li>
+                        <li class="folder-item" data-folder="f-vba">
+                            <i class="fa-solid fa-code"></i> <span>النواة البرمجية والـ VBA</span>
+                        </li>
+                        <li class="folder-item" data-folder="f-plans">
+                            <i class="fa-solid fa-drafting-compass"></i> <span>المخططات الهندسية ونماذج BIM</span>
+                        </li>
+                        <li class="folder-item" data-folder="f-gis">
+                            <i class="fa-solid fa-map-location-dot"></i> <span>خرائط الـ GIS البرمجية</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="files-content card">
+                    <!-- Documents & General Manuals Folder -->
+                    <div class="folder-view active" id="f-docs">
+                        <h3><i class="fa-solid fa-file-shield"></i> المجلد الرئيسي للأدلة والتقارير التنفيذية والحدود</h3>
+                        <p class="folder-path"><i class="fa-regular fa-folder-open"></i> المسار: <code>f:\OneDrive\Documents\MAGHANY_FARM\</code></p>
+                        <table class="files-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم الملف</th>
+                                    <th>نوع الملف</th>
+                                    <th>الحجم</th>
+                                    <th>الوصف والدور في النظام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>الدليل التنفيذي والإداري لإعادة تأهيل وتشغيل مزرعة شركة بارا – خطة تطوير نحو التصدير.docx</strong></td>
+                                    <td>Word Document</td>
+                                    <td>29.1 KB</td>
+                                    <td>خطة التشغيل وإعادة الهيكلة الشاملة للمزرعة 32 فدان لتتحول للنظم التصديرية.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الدليل التنفيذي والإداري لإعادة تأهيل وتشغيل مزرعة شركة باراa.pdf</strong></td>
+                                    <td>PDF Document</td>
+                                    <td>333.7 KB</td>
+                                    <td>النسخة المعتمدة والمصدرة بصيغة PDF للقراءة المباشرة وتداولها بين الملاك.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الدليل التنفيذي والإداري لمزرعة شركة بارا.docx</strong></td>
+                                    <td>Word Document</td>
+                                    <td>31.0 KB</td>
+                                    <td>الهياكل الإدارية والأطر التشغيلية وإجراءات التحسين المقررة للمزرعة.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الدليل التنفيذي والإداري لمزرعة شركة بارا 22.pdf</strong></td>
+                                    <td>PDF Document</td>
+                                    <td>240.0 KB</td>
+                                    <td>نسخة PDF معتمدة ومراجعة للهياكل الإدارية لتطوير الأقسام الزراعية والحيوانية.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Method_Statement_Safety_File_Farm_Para.docx</strong></td>
+                                    <td>Word Document</td>
+                                    <td>33.9 KB</td>
+                                    <td>دليل السلامة والصحة المهنية (HSE) وإقرار الطرق الهندسية المعتمدة للإنشاءات.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>مشروع تسمين الخرفان لشركة بارا للإنتاج الحيواني والزراعي والداجني.kml</strong></td>
+                                    <td>KML Geospatial</td>
+                                    <td>28.6 KB</td>
+                                    <td>الحدود الجغرافية الرسمية الكاملة للمزرعة مسحوبة بالـ GPS لإسقاطها على صور الأقمار الصناعية.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>مشروع_تسمين_الخرفان_شركة_بارا.geojson</strong></td>
+                                    <td>GeoJSON File</td>
+                                    <td>12.2 KB</td>
+                                    <td>الحدود والإحداثيات الجغرافية بصيغة JSON القياسية للاستيراد المباشر في نظم الـ GIS.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Finance & BoQ Folder -->
+                    <div class="folder-view" id="f-finance">
+                        <h3><i class="fa-solid fa-file-invoice-dollar"></i> مجلد الشؤون المالية والتقديرات (Excel BoQ)</h3>
+                        <p class="folder-path"><i class="fa-regular fa-folder-open"></i> المسار: <code>f:\OneDrive\Documents\MAGHANY_FARM\</code></p>
+                        <table class="files-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم الملف</th>
+                                    <th>نوع الملف</th>
+                                    <th>الحجم</th>
+                                    <th>الوصف والدور في النظام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Farm_ROI_36M_AR_Model.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>19.9 KB</td>
+                                    <td>دراسة الجدوى ومخطط العائد الاستثماري على مدار 36 شهراً بالكامل بالعربية للمستثمرين.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>BoQ_Drip_Irrigation_Mango_Maint_Repair.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>43.7 KB</td>
+                                    <td>جدول كميات وتكاليف شبكة الري بالتنقيط ومحابس التحكم لقطاع المانجو (10 أفدنة).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>BoQ_Mango_Irrigation_Hoses_Drippers.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>20.9 KB</td>
+                                    <td>مقايسة وتفاصيل مستلزمات خراطيم ونقاطات الري بالتنقيط لإحلال الشبكة القديمة.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>BoQ_Rehab_Farm_Para_10Feddan_2025.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>17.3 KB</td>
+                                    <td>جدول مقايسة تكاليف وأشغال تأهيل الـ 10 أفدنة الأولى وتحسين البنية التحتية فيها لعام 2025.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>BOQ_Farm_Ponds_Prune_2025.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>14.1 KB</td>
+                                    <td>مستند تقييم وتطهير وأشغال حفر أحواض المياه (حوض A وحوض B2 مساعد).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>BOQ_BREAKDOWN_COMPACT.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>13.7 KB</td>
+                                    <td>تحليل سريع مبسط لأسعار بنود وأشغال المزرعة لتقدير الاحتياجات التمويلية.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farm_Annual_Plan_Mango_Citrus_OlivePalm_2025.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>15.9 KB</td>
+                                    <td>الخطة التشغيلية والجدول الزمني للري والتسميد المخطط لأقسام المزرعة الثلاثة لعام 2025.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>استبيان_تطوير_المزرعة_32_فدان.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>15.1 KB</td>
+                                    <td>دراسة ميدانية واستبيان الأولويات والاحتياجات لإعادة البنية التحتية والتشغيل.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>مقايسة تحسين شبكة الري.pdf</strong></td>
+                                    <td>PDF Document</td>
+                                    <td>197.0 KB</td>
+                                    <td>المقايسة المعتمدة للشبكة وتمديدات المياه لتقديمها للموردين المعتمدين.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Irrigation_Budget_031225.pdf</strong></td>
+                                    <td>PDF Document</td>
+                                    <td>547.4 KB</td>
+                                    <td>الميزانية المعتمدة والخطط المالية المخصصة لشبكات الري وترشيد المياه بالمزرعة.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ERP Folder -->
+                    <div class="folder-view" id="f-erp">
+                        <h3><i class="fa-solid fa-gears"></i> مجلد قواعد البيانات وسكربتات الأتمتة والـ ERP</h3>
+                        <p class="folder-path"><i class="fa-regular fa-folder-open"></i> المسار: <code>f:\OneDrive\Documents\MAGHANY_FARM\erp\</code></p>
+                        <table class="files-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم الملف</th>
+                                    <th>نوع الملف</th>
+                                    <th>الحجم</th>
+                                    <th>الوصف والدور في النظام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>ERP_Sys.accdb</strong></td>
+                                    <td>Access Database</td>
+                                    <td>4.1 MB</td>
+                                    <td>قاعدة البيانات الرئيسية والعمود الفقري لكافة سجلات الأصول والتكاليف والموردين.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ERP_Sys_Backup.accdb</strong></td>
+                                    <td>Access Database</td>
+                                    <td>5.6 MB</td>
+                                    <td>النسخة الاحتياطية المؤرشفة لقاعدة البيانات لضمان عدم فقدان البيانات المالية والتنفيذية.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>bulk_inject_boq_fixed.ps1</strong></td>
+                                    <td>PowerShell Script</td>
+                                    <td>6.5 KB</td>
+                                    <td>سكربت مزامنة وحقن بنود الأسعار والمواد تلقائياً من ملفات الإكسيل لقاعدة البيانات دون تدخل يدوي.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>generate_rfq_arabic.ps1</strong></td>
+                                    <td>PowerShell Script</td>
+                                    <td>10.7 KB</td>
+                                    <td>أداة أوتوماتيكية لتوليد طلبات أسعار ممتازة ومفصلة للموردين بالعربية بناءً على الأكواد.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farm_ERP_Queries.sql</strong></td>
+                                    <td>SQL File</td>
+                                    <td>2.4 KB</td>
+                                    <td>استعلامات SQL مخصصة لحساب تكاليف الصيانة وتقديرات التخزين وتحليل تدفقات السيولة.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farm_ERP_Data.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>19.2 KB</td>
+                                    <td>جداول البيانات الوسيطة المنسقة للاستيراد المباشر والمزامنة مع الجداول الأساسية.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>طلب_عروض_أسعار_المانجو_20260125.xlsx</strong></td>
+                                    <td>Excel Sheet</td>
+                                    <td>15.7 KB</td>
+                                    <td>نموذج طلب عروض الأسعار الموجه لشركات الري والمستلزمات لمقايسة شبكة المانجو.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- VBA Folder -->
+                    <div class="folder-view" id="f-vba">
+                        <h3><i class="fa-solid fa-code"></i> النواة البرمجية للموقع ووحدات الـ VBA للتقارير</h3>
+                        <p class="folder-path"><i class="fa-regular fa-folder-open"></i> المسار: <code>f:\OneDrive\Documents\MAGHANY_FARM\Farm_ERP_4Layers_core\</code></p>
+                        <table class="files-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم الملف</th>
+                                    <th>نوع الملف</th>
+                                    <th>الحجم</th>
+                                    <th>الوصف والدور في النظام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>modArabicReports.bas</strong></td>
+                                    <td>VBA Module</td>
+                                    <td>5.2 KB</td>
+                                    <td>كود معالجة وتصدير التقارير العربية وتطويع الخطوط والترجمة في ملفات PDF الموجهة للمستثمرين.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>modUIVendorService.bas</strong></td>
+                                    <td>VBA Module</td>
+                                    <td>8.9 KB</td>
+                                    <td>برمجة شاشات المستخدم والواجهات لإدارة وتنسيق عروض الموردين ومقارنتها تلقائياً.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>modInventorySystem.bas</strong></td>
+                                    <td>VBA Module</td>
+                                    <td>1.1 KB</td>
+                                    <td>وحدة إدارة المخزون وحركات الأصول وتوريد قطع الغيار لشبكات ري المانجو والزيتون.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>modSetupFarmAccounting.bas</strong></td>
+                                    <td>VBA Module</td>
+                                    <td>0.8 KB</td>
+                                    <td>المنطق الحسابي لتدفقات المزرعة النقدية وحساب التكاليف الثابتة والمتغيرة وصافي الأرباح.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>modReportsCore.bas</strong></td>
+                                    <td>VBA Module</td>
+                                    <td>4.2 KB</td>
+                                    <td>الوحدة الأساسية لربط وإخراج التقارير التشغيلية والمالية بالتنسيق الموحد.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>modEmployeeSystem.bas</strong></td>
+                                    <td>VBA Module</td>
+                                    <td>1.1 KB</td>
+                                    <td>نظام إدارة بيانات العمالة والرواتب وجداول التشغيل اليومية والأسبوعية للعمال.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Plans Folder -->
+                    <div class="folder-view" id="f-plans">
+                        <h3><i class="fa-solid fa-drafting-compass"></i> مجلد المخططات الهندسية ونموذج التوأم الرقمي BIM</h3>
+                        <p class="folder-path"><i class="fa-regular fa-folder-open"></i> المسار: <code>f:\OneDrive\Documents\MAGHANY_FARM\Plans\</code></p>
+                        <table class="files-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم الملف</th>
+                                    <th>نوع الملف</th>
+                                    <th>الحجم</th>
+                                    <th>الوصف والدور في النظام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Farm_Master.rvt</strong></td>
+                                    <td>Revit BIM Model</td>
+                                    <td>38.4 MB</td>
+                                    <td>النموذج الهندسي ثلاثي الأبعاد الشامل للبنية الأساسية والمباني ومحطة الضخ والفلترة.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farm_Site_Master.rvt</strong></td>
+                                    <td>Revit BIM Model</td>
+                                    <td>38.5 MB</td>
+                                    <td>نموذج التموضع الهندسي العام للموقع ومحاذاة خطوط الشبكة الرئيسية مع إحداثيات الرفع المساحي.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farm_Surface_C3D.dwg</strong></td>
+                                    <td>Civil 3D Drawing</td>
+                                    <td>0.9 MB</td>
+                                    <td>خريطة طبوغرافيا الأرض والرفع المساحي وتوزيع مناسيب حفر وتبطين الأحواض لتأمين التدفق المائي.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>IMPORT_SURVEY_POINTS.LSP</strong></td>
+                                    <td>AutoLISP Script</td>
+                                    <td>1.2 KB</td>
+                                    <td>أداة أتمتة لرسم وإسقاط نقاط الرفع المساحي فور استلامها من أجهزة المساحة الحقلية (GPS).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MAKE_BOUNDARY_FROM_C.LSP</strong></td>
+                                    <td>AutoLISP Script</td>
+                                    <td>2.3 KB</td>
+                                    <td>برنامج أوتوماتيكي لاستخراج ورسم الحدود المساحية الخارجية وحساب مساحات الأحواض بدقة.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farm_Survey_Points.csv</strong></td>
+                                    <td>CSV Points</td>
+                                    <td>1.6 KB</td>
+                                    <td>نقاط الرفع المساحي الميدانية الكاملة لإحداثيات المزرعة جاهزة للاستيراد المباشر ببرامج الهندسة.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- GIS Folder -->
+                    <div class="folder-view" id="f-gis">
+                        <h3><i class="fa-solid fa-map-location-dot"></i> مجلد أدوات الـ GIS والخرائط الجغرافية الميدانية</h3>
+                        <p class="folder-path"><i class="fa-regular fa-folder-open"></i> المسار: <code>f:\OneDrive\Documents\MAGHANY_FARM\Irrigation Assets\</code></p>
+                        <table class="files-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم الملف</th>
+                                    <th>نوع الملف</th>
+                                    <th>الحجم</th>
+                                    <th>الوصف والدور في النظام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>generate_map.py</strong></td>
+                                    <td>Python Script</td>
+                                    <td>7.1 KB</td>
+                                    <td>سكربت بايثون المتطور لتحويل ملفات الكي إم إل (KML) لخرائط ويب جغرافية تفاعلية.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>FarmMap.html</strong></td>
+                                    <td>Dynamic Web Map</td>
+                                    <td>3.2 KB</td>
+                                    <td>خريطة المزرعة الرقمية التفاعلية لعرض وتفقد الأحواض والمحابس عبر الويب وتحديد البيانات الحية.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>check_kml.py</strong></td>
+                                    <td>Python Script</td>
+                                    <td>3.1 KB</td>
+                                    <td>سكربت للتحقق من سلامة الإحداثيات وتطابق المساحة المساحية مع الواقع الميداني.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farm_ColoredOutlines.dxf</strong></td>
+                                    <td>DXF Drawing</td>
+                                    <td>20.8 KB</td>
+                                    <td>ملف المخطط المساحي بحدود أحواض الموالح والمانجو والزيتون الملونة المعتمدة.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farm_RedOutline.dxf</strong></td>
+                                    <td>DXF Drawing</td>
+                                    <td>19.7 KB</td>
+                                    <td>ملف المخطط المساحي بالحد الخارجي الأحمر العام للمزرعة بالكامل.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulated Map Section -->
+        <section id="map" class="map-section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-map-location-dot"></i> التخطيط الجغرافي التفاعلي لمزرعة المغاني (32 فداناً)</h2>
+                <p>استكشف التخطيط الهندسي ثلاثي الأبعاد أو الخريطة الجغرافية الحية بالأقمار الصناعية (GIS)</p>
+            </div>
+            
+            <!-- Map Toggle Selector for Premium UI -->
+            <div class="map-toggle-tabs">
+                <button class="map-toggle-btn active" data-map-view="svg-view">
+                    <i class="fa-solid fa-drafting-compass"></i> المخطط الهندسي التفاعلي (BIM)
+                </button>
+                <button class="map-toggle-btn" data-map-view="gis-view">
+                    <i class="fa-solid fa-earth-africa"></i> خريطة الأقمار الصناعية الجغرافية (GIS)
+                </button>
+            </div>
+            
+            <div class="map-grid">
+                <div class="map-visual card">
+                    <!-- Tab 1: Interactive SVG BIM Map -->
+                    <div id="svg-view" class="map-view-panel active">
+                        <div class="svg-map-wrapper">
+                            <!-- Custom designed beautiful SVG of the farm for the investors -->
+                            <svg viewBox="0 0 800 500" class="farm-svg">
+                            <!-- Background Grid -->
+                            <defs>
+                                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                                </pattern>
+                            </defs>
+                            <rect width="800" height="500" fill="url(#grid)" />
+                            
+                            <!-- Road / Boundary -->
+                            <rect x="20" y="20" width="760" height="460" rx="10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="8,4" />
+                            
+                            <!-- Ponds Section -->
+                            <g class="map-element" id="el-pond-a">
+                                <rect x="50" y="50" width="120" height="120" rx="8" class="pond-svg" />
+                                <text x="110" y="115" class="svg-text">حوض مياه A</text>
+                                <text x="110" y="135" class="svg-text-sub"> HD PE 5,000م³</text>
+                            </g>
+                            <g class="map-element" id="el-pond-b">
+                                <rect x="50" y="190" width="120" height="120" rx="8" class="pond-svg" />
+                                <text x="110" y="255" class="svg-text">حوض مياه B2</text>
+                                <text x="110" y="275" class="svg-text-sub">HD PE 5,000م³</text>
+                            </g>
+                            
+                            <!-- Filtration Station -->
+                            <g class="map-element" id="el-filters">
+                                <rect x="200" y="120" width="100" height="120" rx="5" class="filter-svg" />
+                                <text x="250" y="175" class="svg-text">محطة الفلترة</text>
+                                <text x="250" y="195" class="svg-text-sub">ثنائية المراحل</text>
+                                <path d="M 170 110 L 200 150 M 170 250 L 200 210" stroke="#00d2ff" stroke-width="3" />
+                            </g>
+
+                            <!-- Cultivated Fields -->
+                            <g class="map-element" id="el-field-1">
+                                <rect x="330" y="50" width="200" height="180" rx="5" class="field-svg mango" />
+                                <text x="430" y="130" class="svg-text">حوض المانجو</text>
+                                <text x="430" y="150" class="svg-text-sub">10 أفدنة</text>
+                            </g>
+
+                            <g class="map-element" id="el-field-2">
+                                <rect x="550" y="50" width="200" height="180" rx="5" class="field-svg citrus" />
+                                <text x="650" y="130" class="svg-text">حوض الموالح</text>
+                                <text x="650" y="150" class="svg-text-sub">8 أفدنة</text>
+                            </g>
+
+                            <g class="map-element" id="el-field-3">
+                                <rect x="330" y="250" width="420" height="200" rx="5" class="field-svg olive" />
+                                <text x="540" y="340" class="svg-text">حوض الزيتون والنخيل</text>
+                                <text x="540" y="360" class="svg-text-sub">14 فداناً</text>
+                            </g>
+                            
+                            <!-- Water flow lines -->
+                            <path d="M 300 180 L 330 180 M 300 180 L 330 350 M 530 140 L 550 140" fill="none" stroke="#20c997" stroke-width="4" stroke-dasharray="5,3" class="flowing-water" />
+                        </svg>
+                    </div>
+                    </div>
+                    
+                    <!-- Tab 2: Live Leaflet GIS Google Satellite Map -->
+                    <div id="gis-view" class="map-view-panel">
+                        <div id="live-gis-map" style="width: 100%; height: 450px; min-height: 450px; border-radius: 12px; position: relative; z-index: 1;"></div>
+                    </div>
+                </div>
+                
+                <div class="map-details">
+                    <div class="detail-card active" id="details-default">
+                        <h3><i class="fa-solid fa-hand-pointer"></i> استعراض البنية التحتية جغرافياً</h3>
+                        <p>مرر الفأرة أو انقر فوق أي عنصر في المخطط الجغرافي المقابل (الأحواض، محطة الفلترة، الأحواض الزراعية) لعرض المواصفات الفنية المحدثة من نموذج الريفيت والـ CAD الموحد.</p>
+                        <div class="info-alert">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <span>جميع الإحداثيات والحدود مطابقة لملف الـ KML الفعلي للمزرعة.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card" id="details-pond-a">
+                        <h3><i class="fa-solid fa-water"></i> حوض تخزين المياه الرئيسي A</h3>
+                        <ul>
+                            <li><strong>السعة المقدرة:</strong> 5,000 متر مكعب.</li>
+                            <li><strong>نوع البطانة:</strong> مادة البولي إيثيلين عالي الكثافة (HDPE) سمك 1.5 مم لمنع التسرب.</li>
+                            <li><strong>الغرض الأساسي:</strong> استقبال وتجميع مياه الآبار وترسيب الرواسب قبل الفلترة.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-card" id="details-pond-b">
+                        <h3><i class="fa-solid fa-water"></i> حوض تخزين المياه المساعد B2</h3>
+                        <ul>
+                            <li><strong>السعة المقدرة:</strong> 5,000 متر مكعب.</li>
+                            <li><strong>نوع البطانة:</strong> بطانة HDPE ممتازة مقاومة للأشعة فوق البنفسجية.</li>
+                            <li><strong>الربط الشبكي:</strong> مرتبط بالتوازي مع حوض A لتأمين احتياطي ري كافٍ لـ 3 أيام طوارئ.</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card" id="details-filters">
+                        <h3><i class="fa-solid fa-filter"></i> محطة الفلترة والضخ المزدوجة</h3>
+                        <ul>
+                            <li><strong>التصميم الميكانيكي:</strong> ثلاث خزانات فلترة رملية مع فلتر شبكي ثنائي المراحل.</li>
+                            <li><strong>المحابس المستخدمة:</strong> محابس Bermad هيدروليكية للتحكم التلقائي والغسيل العكسي.</li>
+                            <li><strong>أتمتة التشغيل:</strong> مرتبطة بلوحة تحكم ذكية مرتبطة بنظام الـ ERP لمراقبة الضغط.</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card" id="details-field-1">
+                        <h3><i class="fa-solid fa-tree"></i> حوض زراعة المانجو (10 أفدنة)</h3>
+                        <ul>
+                            <li><strong>نوع المحصول:</strong> مانجو صنف (كيت ونعومي) عالي الإنتاجية للتصدير.</li>
+                            <li><strong>نظام الري:</strong> خراطيم ري بالتنقيط Netafim مزودة بنقاطات ذاتية التنظيف ومقاوِمة للانسداد.</li>
+                            <li><strong>حالة الأصول:</strong> تحت التأهيل والصيانة الدورية المسجلة بملفات الـ BoQ.</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card" id="details-field-2">
+                        <h3><i class="fa-solid fa-lemon"></i> حوض زراعة الموالح (8 أفدنة)</h3>
+                        <ul>
+                            <li><strong>نوع المحصول:</strong> برتقال صيفي ويوسفي معد للتصدير.</li>
+                            <li><strong>نظام الري:</strong> ري بالتنقيط حديث بنقاطات تصرف 4 لتر/ساعة للتحكم بالرطوبة.</li>
+                            <li><strong>إدارة العمليات:</strong> يسجل نظام الـ ERP مواعيد التسميد وجداول الري المحددة.</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card" id="details-field-3">
+                        <h3><i class="fa-solid fa-tree"></i> حوض الزيتون والنخيل (14 فداناً)</h3>
+                        <ul>
+                            <li><strong>المحاصيل المزروعة:</strong> زيتون بيكوال وتفاحي ونخيل صعيدي وسيوي فاخر.</li>
+                            <li><strong>التوزيع الهندسي:</strong> منسق بالكامل عبر إحداثيات Civil 3D لتسهيل الحصاد الآلي.</li>
+                            <li><strong>شبكة الري:</strong> شبكة ري تحت سطحية ونقاطات مباعدة لترشيد استهلاك المياه لأقصى درجة.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>جميع الحقوق محفوظة © 2026 | منظومة إدارة التوأم الرقمي لمزرعة المغاني (شركة بارا للإنتاج الحيواني والزراعي والداجني)</p>
+            <p><small>صمم هذا التطبيق التفاعلي خصيصاً للملاك والمستثمرين لربط البيانات الهندسية بالنتائج المالية وتسهيل اتخاذ القرارات.</small></p>
+        </div>
+    </footer>
+
+    <!-- Leaflet GIS Map JS Library -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- App Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
