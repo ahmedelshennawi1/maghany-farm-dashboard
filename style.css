@@ -1,4 +1,4 @@
-/* CSS Design System | Maghany Farm Digital Twin Portal */
+﻿/* CSS Design System | Para Farm Digital Twin Portal */
 :root {
     --bg-dark: #071f15;
     --bg-card: rgba(13, 44, 31, 0.65);
@@ -1008,4 +1008,5 @@ section {
 .leaflet-popup-close-button:hover {
     color: var(--red) !important;
 }
+
 
