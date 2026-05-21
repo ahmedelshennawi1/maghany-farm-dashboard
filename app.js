@@ -57,7 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "el-filters": "details-filters",
         "el-field-1": "details-field-1",
         "el-field-2": "details-field-2",
-        "el-field-3": "details-field-3"
+        "el-field-3": "details-field-3",
+        "el-intercrop": "details-intercrop"
     };
 
     const detailCards = document.querySelectorAll(".detail-card");
@@ -166,25 +167,37 @@ document.addEventListener("DOMContentLoaded", () => {
             {"name": "حوض المانجو 1ب (10 أفدنة - تحت التأهيل)", "type": "Polygon", "coordinates": [[30.36676184033209, 31.87810728305992], [30.36530558034007, 31.87775226358862], [30.36515731403004, 31.87867770607916], [30.36653102722636, 31.87905817497397], [30.36656061903983, 31.87891034942033], [30.36664795593913, 31.87892756560021], [30.36676184033209, 31.87810728305992]]}, 
             {"name": "حوض المانجو 2ب (تطوير شبكة الري)", "type": "Polygon", "coordinates": [[30.3669507224015, 31.87710771107792], [30.36546917476929, 31.876776140604], [30.36541667315027, 31.87728340046687], [30.36597741954946, 31.87742893071001], [30.36590338242079, 31.87783944285679], [30.36677581065288, 31.87802695157951], [30.3669507224015, 31.87710771107792]]}, 
             {"name": "حوض المياه ومحطة الفلترة الرئيسية B2 (5,000 م³)", "type": "Polygon", "coordinates": [[30.36796313400088, 31.87620518969295], [30.36814510494346, 31.87523116607996], [30.36625984550361, 31.87481802172995], [30.36606974121959, 31.87582134203363], [30.36796313400088, 31.87620518969295]]}, 
-            {"name": "حوض الزيتون والنخيل 3أ1 (14 فداناً - ري بالتنقيط حديث)", "type": "Polygon", "coordinates": [[30.36822158133792, 31.8763256567203], [30.36715779687023, 31.87610396368709], [30.36702551338116, 31.87701402086329], [30.36803804004113, 31.87724887783632], [30.36822158133792, 31.8763256567203]]}
+            {"name": "مشروع التكثيف 3أ (0.95 فدان - برحي وروزماري)", "type": "Polygon", "coordinates": [[30.368048, 31.877272], [30.368427, 31.877353], [30.368609, 31.876408], [30.368224, 31.876330], [30.368048, 31.877272]]}, 
+            {"name": "مشروع التكثيف 2أ (3.36 فدان - برحي وروزماري)", "type": "Polygon", "coordinates": [[30.368402, 31.877401], [30.367031, 31.877110], [30.366869, 31.878042], [30.368231, 31.878359], [30.368402, 31.877401]]}, 
+            {"name": "مشروع التكثيف 3أ1 (2.52 فدان - برحي وروزماري)", "type": "Polygon", "coordinates": [[30.36822158133792, 31.8763256567203], [30.36715779687023, 31.87610396368709], [30.36702551338116, 31.87701402086329], [30.36803804004113, 31.87724887783632], [30.36822158133792, 31.8763256567203]]}
         ];
 
         const bounds = [];
 
         farmFeatures.forEach(f => {
             if (f.type === 'Polygon') {
+                const isIntercrop = f.name.includes("التكثيف") || f.name.includes("روزماري");
+                const polyColor = isIntercrop ? '#00e676' : '#20c997';
+                const polyFillColor = isIntercrop ? '#ffc107' : '#20c997';
+                const polyOpacity = isIntercrop ? 0.35 : 0.18;
+                const polyWeight = isIntercrop ? 4 : 3;
+
                 const poly = L.polygon(f.coordinates, {
-                    color: '#20c997', // Emerald theme
-                    fillColor: '#20c997',
-                    fillOpacity: 0.18,
-                    weight: 3
+                    color: polyColor,
+                    fillColor: polyFillColor,
+                    fillOpacity: polyOpacity,
+                    weight: polyWeight
                 }).addTo(gisMap);
 
                 poly.bindPopup(`
                     <div style="direction: rtl; text-align: right; font-family: 'Cairo', sans-serif;">
-                        <strong style="color: #20c997; font-size: 1.05rem;"><i class="fa-solid fa-layer-group"></i> ${f.name}</strong>
+                        <strong style="color: ${isIntercrop ? '#00e676' : '#20c997'}; font-size: 1.05rem;">
+                            <i class="fa-solid ${isIntercrop ? 'fa-seedling' : 'fa-layer-group'}"></i> ${f.name}
+                        </strong>
                         <hr style="margin: 8px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.15);">
-                        <p style="margin: 0; font-size: 0.85rem; color: #a3bdae;">تم إسقاط الحدود من ملف الـ KML المساحي لمشروع تأهيل المزرعة.</p>
+                        <p style="margin: 0; font-size: 0.85rem; color: #e9ecef;">
+                            ${isIntercrop ? '<strong>مشروع استثماري واعد:</strong> نخل برحي (8×8م) محمل بالروزماري لإنتاج الزيت العطري بالتقطير البخاري. ري مزدوج حديث مستقل.' : 'تم إسقاط الحدود من ملف الـ KML المساحي لمشروع تأهيل المزرعة.'}
+                        </p>
                     </div>
                 `);
 
