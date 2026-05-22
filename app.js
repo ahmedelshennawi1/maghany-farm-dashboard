@@ -233,5 +233,203 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // ==========================================
+    // 6. CARD NESTED TABS SYSTEM
+    // ==========================================
+    const cardTabButtons = document.querySelectorAll(".card-tab-btn");
+    cardTabButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.stopPropagation(); // prevent map click triggers
+            const tabId = button.getAttribute("data-card-tab");
+            
+            // Get parent detail card
+            const parentCard = button.closest(".detail-card");
+            if (parentCard) {
+                // Find all buttons and contents in this parent card only
+                const buttons = parentCard.querySelectorAll(".card-tab-btn");
+                const contents = parentCard.querySelectorAll(".card-tab-content");
+                
+                buttons.forEach(btn => btn.classList.remove("active"));
+                contents.forEach(cnt => cnt.classList.remove("active"));
+                
+                button.classList.add("active");
+                const targetContent = parentCard.querySelector(`#${tabId}`);
+                if (targetContent) {
+                    targetContent.classList.add("active");
+                }
+            }
+        });
+    });
+
+    // ==========================================
+    // 7. AUTOMATIC BACKWASH SIMULATOR LOGIC
+    // ==========================================
+    const btnTriggerBackwash = document.getElementById("btn-trigger-backwash");
+    const btnResetFiltration = document.getElementById("btn-reset-filtration");
+    const simStatusDot = document.getElementById("sim-status-dot");
+    const simStatusText = document.getElementById("sim-status-text");
+    const simDpVal = document.getElementById("sim-dp-val");
+    const simExplanation = document.getElementById("sim-explanation-text");
+
+    let backwashSequenceTimer = null;
+    let currentBackwashStep = 0;
+
+    const tanks = [
+        { id: "tank-1", valveId: "valve-1", drainId: "drain-1", name: "خزان الرمل 1" },
+        { id: "tank-2", valveId: "valve-2", drainId: "drain-2", name: "خزان الرمل 2" },
+        { id: "tank-3", valveId: "valve-3", drainId: "drain-3", name: "خزان الرمل 3" }
+    ];
+
+    const discFilters = ["disc-1", "disc-2"];
+
+    function resetToNormalFiltration() {
+        if (backwashSequenceTimer) {
+            clearTimeout(backwashSequenceTimer);
+            backwashSequenceTimer = null;
+        }
+        currentBackwashStep = 0;
+
+        // Reset buttons
+        if (btnTriggerBackwash) btnTriggerBackwash.classList.remove("active");
+        if (btnResetFiltration) btnResetFiltration.classList.add("active");
+
+        // Reset status
+        if (simStatusDot) simStatusDot.className = "status-indicator normal";
+        if (simStatusText) simStatusText.textContent = "حالة النظام: ترشيح طبيعي";
+        if (simDpVal) {
+            simDpVal.textContent = "0.2";
+            simDpVal.className = "dp-normal";
+        }
+
+        // Reset Explanation
+        if (simExplanation) {
+            simExplanation.innerHTML = `
+                <i class="fa-solid fa-circle-info"></i>
+                <span>يتدفق الماء النظيف (الأزرق) من خط الترسيب ويمر عبر خزانات الرمل وفلاتر الديسك إلى شبكة ري الحقل. ضغط النظام آمن ومستقر.</span>
+            `;
+        }
+
+        // Reset tanks & valves
+        tanks.forEach(tank => {
+            const el = document.getElementById(tank.id);
+            const valve = document.getElementById(tank.valveId);
+            const drain = document.getElementById(tank.drainId);
+            if (el) {
+                el.classList.add("active-filter");
+                el.classList.remove("active-backwash");
+            }
+            if (valve) valve.textContent = "عادي";
+            if (drain) drain.style.background = "rgba(255,255,255,0.03)";
+        });
+
+        // Reset disc filters
+        discFilters.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add("active-filter");
+        });
+    }
+
+    function runSequentialBackwash() {
+        if (backwashSequenceTimer) {
+            clearTimeout(backwashSequenceTimer);
+        }
+
+        // Toggle buttons
+        if (btnResetFiltration) btnResetFiltration.classList.remove("active");
+        if (btnTriggerBackwash) btnTriggerBackwash.classList.add("active");
+
+        // Set state to backwash warning
+        if (simStatusDot) simStatusDot.className = "status-indicator backwash";
+        if (simDpVal) {
+            simDpVal.textContent = "0.7";
+            simDpVal.className = "dp-warning";
+        }
+
+        function runStep() {
+            // Reset all tanks to default filtering state
+            tanks.forEach(tank => {
+                const el = document.getElementById(tank.id);
+                const valve = document.getElementById(tank.valveId);
+                const drain = document.getElementById(tank.drainId);
+                if (el) {
+                    el.classList.add("active-filter");
+                    el.classList.remove("active-backwash");
+                }
+                if (valve) valve.textContent = "عادي";
+                if (drain) drain.style.background = "rgba(255,255,255,0.03)";
+            });
+
+            if (currentBackwashStep < 3) {
+                const currentTank = tanks[currentBackwashStep];
+                if (simStatusText) simStatusText.textContent = `دورة الغسيل العكسي: جاري غسيل ${currentTank.name}...`;
+                if (simExplanation) {
+                    simExplanation.innerHTML = `
+                        <i class="fa-solid fa-triangle-exclamation" style="color: #f5b041;"></i>
+                        <span>محبس AZUD 3-Way الهيدروليكي يحول التدفق في ${currentTank.name} للصرف. يتدفق الماء عكسياً لإزالة الرواسب، ويستمر الخزانان الآخران في الري.</span>
+                    `;
+                }
+
+                // Highlight active backwash tank
+                const tankEl = document.getElementById(currentTank.id);
+                const valveEl = document.getElementById(currentTank.valveId);
+                const drainEl = document.getElementById(currentTank.drainId);
+
+                if (tankEl) {
+                    tankEl.classList.remove("active-filter");
+                    tankEl.classList.add("active-backwash");
+                }
+                if (valveEl) valveEl.textContent = "عكسي";
+                if (drainEl) drainEl.style.background = "#ff5252";
+
+                currentBackwashStep++;
+                backwashSequenceTimer = setTimeout(runStep, 3500); // 3.5 seconds per tank
+            } else {
+                // Complete sequence
+                if (simStatusDot) simStatusDot.className = "status-indicator normal";
+                if (simStatusText) simStatusText.textContent = "اكتمل الغسيل العكسي بنجاح!";
+                if (simDpVal) {
+                    simDpVal.textContent = "0.0";
+                    simDpVal.className = "dp-normal";
+                }
+                if (simExplanation) {
+                    simExplanation.innerHTML = `
+                        <i class="fa-solid fa-circle-check" style="color: #20c997;"></i>
+                        <span>تم تنظيف رمل السيليكا ذاتياً بالكامل. انخفض فرق الضغط إلى 0.0 بار. يعود النظام تدريجياً لوضع التشغيل الطبيعي.</span>
+                    `;
+                }
+
+                // Return all tanks to normal filtration
+                tanks.forEach(tank => {
+                    const el = document.getElementById(tank.id);
+                    const valve = document.getElementById(tank.valveId);
+                    if (el) el.classList.add("active-filter");
+                    if (valve) valve.textContent = "عادي";
+                });
+
+                // Reset buttons and return to normal operation after 4 seconds
+                backwashSequenceTimer = setTimeout(resetToNormalFiltration, 4000);
+            }
+        }
+
+        currentBackwashStep = 0;
+        runStep();
+    }
+
+    if (btnTriggerBackwash && btnResetFiltration) {
+        btnTriggerBackwash.addEventListener("click", (e) => {
+            e.stopPropagation();
+            runSequentialBackwash();
+        });
+
+        btnResetFiltration.addEventListener("click", (e) => {
+            e.stopPropagation();
+            resetToNormalFiltration();
+        });
+
+        // Initialize state on page load
+        resetToNormalFiltration();
+    }
+
 });
+
 
