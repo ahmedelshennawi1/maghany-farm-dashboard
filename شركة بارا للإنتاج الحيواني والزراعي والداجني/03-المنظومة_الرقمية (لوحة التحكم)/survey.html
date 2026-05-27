@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استبيان تحديث حالة المزرعة | شركة بارا</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-dark, #071f15);
+            color: var(--text-primary, #f3f7f5);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .glass-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background: radial-gradient(circle at 10% 20%, rgba(32, 201, 151, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 80%, rgba(245, 176, 65, 0.05) 0%, transparent 45%);
+        }
+
+        .survey-container {
+            background: var(--bg-card, rgba(13, 44, 31, 0.65));
+            border: 1px solid var(--border-color, rgba(32, 201, 151, 0.18));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            direction: rtl;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: var(--primary, #20c997);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid var(--border-color, rgba(32, 201, 151, 0.18));
+            padding-bottom: 15px;
+            text-shadow: 0 0 10px var(--primary-glow, rgba(32, 201, 151, 0.35));
+        }
+
+        p.subtitle {
+            color: var(--text-secondary, #a3bdae);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: var(--gold, #f5b041);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 35px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-right: 3px solid var(--gold, #f5b041);
+            padding-right: 10px;
+        }
+
+        .question-group {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .question-group:hover {
+            border-color: var(--border-hover, rgba(32, 201, 151, 0.4));
+        }
+
+        .question-text {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .question-hint {
+            font-size: 0.85rem;
+            color: var(--text-secondary, #a3bdae);
+            margin-top: -10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .option-item:hover {
+            background: rgba(32, 201, 151, 0.08);
+            border-color: rgba(32, 201, 151, 0.25);
+        }
+
+        .option-item input[type="radio"], 
+        .option-item input[type="checkbox"] {
+            accent-color: var(--primary, #20c997);
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-top: 3px;
+        }
+
+        .option-item span {
+            font-size: 0.95rem;
+            user-select: none;
+            color: #f3f7f5;
+        }
+
+        .write-in-container {
+            margin-top: 15px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .write-in-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color, rgba(32, 201, 151, 0.18));
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .write-in-input:focus {
+            outline: none;
+            border-color: var(--primary, #20c997);
+            box-shadow: 0 0 10px rgba(32, 201, 151, 0.2);
+        }
+
+        .btn-submit {
+            background: var(--primary, #20c997);
+            color: #05140e;
+            border: none;
+            padding: 18px 30px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 35px;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 10px 20px rgba(32, 201, 151, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #1cb889;
+            box-shadow: 0 10px 25px rgba(32, 201, 151, 0.45);
+            transform: translateY(-2px);
+        }
+
+        /* Success & Result Container */
+        .result-container {
+            margin-top: 35px;
+            display: none;
+            background: rgba(13, 44, 31, 0.9);
+            border: 1px solid var(--primary, #20c997);
+            border-radius: 12px;
+            padding: 30px;
+            animation: fadeIn 0.5s ease;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .result-container i.success-icon {
+            font-size: 3.5rem;
+            color: var(--primary, #20c997);
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px var(--primary-glow));
+        }
+
+        .result-container h3 {
+            color: #ffffff;
+            margin-top: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .result-container p {
+            color: var(--text-secondary, #a3bdae);
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-dashboard {
+            background: var(--gold, #f5b041);
+            color: #000000;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dashboard:hover {
+            background: #e0a800;
+            transform: scale(1.03);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-bg"></div>
+    
+    <div class="survey-container">
+        <h1><i class="fa-solid fa-clipboard-question"></i> تحديث الحالة الفعلية لمزرعة بارا</h1>
+        <p class="subtitle">يرجى ملء الاستبيان التفاعلي لتوصيف وضع المزرعة الحالي. ستنعكس إجاباتك فورياً على لوحة التحكم الرقمية (Digital Twin) والتقارير التنفيذية بمجرد الحفظ.</p>
+        
+        <form id="surveyForm">
+            <!-- Section 1 -->
+            <div class="section-title"><i class="fa-solid fa-shovel"></i> أولاً: قطاع إزالة الموالح وتجهيز التربة (10.54 فدان)</div>
+            
+            <div class="question-group">
+                <div class="question-text">1. ما هي حالة إزالة أشجار الموالح في حواش 1A و 3A للبدء في مشروع التكثيف؟</div>
+                <span class="question-hint">(يمكنك اختيار أكثر من خيار إذا لزم الأمر)</span>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="checkbox" name="q_citrus_removal" value="تم قلع وإزالة كافة أشجار الموالح بالكامل">
+                        <span>تم قلع وإزالة كافة أشجار الموالح بالكامل (100%)</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_citrus_removal" value="تم تسوية وتجهيز نواتج القلع للبيع كحطب">
+                        <span>تم تسوية وتجهيز نواتج القلع للبيع كحطب</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_citrus_removal" value="تم تنظيف وتطهير الأرض من الجذور العميقة">
+                        <span>تم تنظيف وتطهير الأرض من الجذور العميقة</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_citrus_removal" value="أخرى" onchange="toggleWriteIn(this, 'citrus_removal_write')">
+                        <span>أخرى / تفاصيل إضافية</span>
+                    </label>
+                </div>
+                <div class="write-in-container" id="citrus_removal_write">
+                    <input type="text" class="write-in-input" placeholder="اكتب تفاصيل إضافية هنا...">
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-text">2. ما هي حالة حرث وتسوية التربة وتجهيز الخطوط؟</div>
+                <span class="question-hint">(يمكن اختيار أكثر من خيار)</span>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="checkbox" name="q_soil_prep" value="تم إلغاء الحرث بالليزر والاعتماد على نقاطات تعويض الضغط (PC)">
+                        <span>تم إلغاء الحرث بالليزر والاعتماد على نقاطات تعويض الضغط (PC) لتوفير التكاليف</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_soil_prep" value="تم الانتهاء من شق الخطوط وتجهيز مصاطب الزراعة">
+                        <span>تم الانتهاء من شق الخطوط وتجهيز مصاطب الزراعة</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_soil_prep" value="تم إضافة السماد العضوي (الكومبوست) والجبس الزراعي ومحسنات التربة للخطوط">
+                        <span>تم إضافة السماد العضوي (الكومبوست) والجبس الزراعي ومحسنات التربة للخطوط</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_soil_prep" value="أخرى" onchange="toggleWriteIn(this, 'soil_prep_write')">
+                        <span>أخرى / تفاصيل إضافية</span>
+                    </label>
+                </div>
+                <div class="write-in-container" id="soil_prep_write">
+                    <input type="text" class="write-in-input" placeholder="اكتب تفاصيل إضافية هنا...">
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section-title"><i class="fa-solid fa-leaf"></i> ثانياً: مشروع التكثيف (النخيل والروزماري)</div>
+            
+            <div class="question-group">
+                <div class="question-text">3. ما هو الموقف الميداني الفعلي لفسائل النخيل البرحي النسيجي (685 نخلة)؟</div>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="radio" name="q_palm_status" value="لم يتم الشراء أو الغرس بعد" checked>
+                        <span>لم يتم الشراء أو الغرس بعد</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_palm_status" value="تم التعاقد ودفع الدفعة الأولى وجاري تجهيز الفسائل">
+                        <span>تم التعاقد ودفع الدفعة الأولى وجاري تجهيز الفسائل</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_palm_status" value="تم توريد الفسائل وجاري غرسها حالياً بالكامل">
+                        <span>تم توريد الفسائل وجاري غرسها حالياً بالكامل</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_palm_status" value="أخرى" onchange="toggleWriteInRadio(this, 'palm_write')">
+                        <span>أخرى (اكتب التفاصيل)</span>
+                    </label>
+                </div>
+                <div class="write-in-container" id="palm_write">
+                    <input type="text" class="write-in-input" placeholder="مثال: تم زراعة 100 نخلة فقط حتى الآن...">
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-text">4. ما هو الموقف الفعلي لشتلات وعقل الروزماري (55,335 شتلة)؟</div>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="radio" name="q_rosemary_status" value="لم تبدأ زراعة الروزماري بعد" checked>
+                        <span>لم تبدأ زراعة الروزماري بعد</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_rosemary_status" value="تم تجهيز المشتل لتجهيز العقل محلياً">
+                        <span>تم تجهيز المشتل لتجهيز العقل محلياً</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_rosemary_status" value="جاري توريد الشتلات والغرس بين خطوط النخيل">
+                        <span>جاري توريد الشتلات والغرس بين خطوط النخيل</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_rosemary_status" value="أخرى" onchange="toggleWriteInRadio(this, 'rosemary_write')">
+                        <span>أخرى (حدد العدد التقريبي المزروع)</span>
+                    </label>
+                </div>
+                <div class="write-in-container" id="rosemary_write">
+                    <input type="text" class="write-in-input" placeholder="مثال: تم زراعة 15,000 شتلة بالكامل...">
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section-title"><i class="fa-solid fa-droplet"></i> ثالثاً: شبكة الري بالتنقيط المزدوجة</div>
+            
+            <div class="question-group">
+                <div class="question-text">5. ما هي حالة تنفيذ شبكة الري بالتنقيط المزدوجة؟</div>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="radio" name="q_irrigation_status" value="لم تبدأ الأعمال الميدانية للشبكة بعد" checked>
+                        <span>لم تبدأ الأعمال الميدانية للشبكة بعد</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_irrigation_status" value="تم توريد خراطيم البولي إيثيلين والمواسير للخطوط الفرعية">
+                        <span>تم توريد خراطيم البولي إيثيلين والمواسير للخطوط الفرعية</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_irrigation_status" value="جاري حفر وتمديد مواسير الـ PVC الرئيسية والفرعية">
+                        <span>جاري حفر وتمديد مواسير الـ PVC الرئيسية والفرعية</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_irrigation_status" value="تم التنفيذ والتشغيل والاختبار الميداني بنجاح">
+                        <span>تم التنفيذ والتشغيل والاختبار الميداني بنجاح</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-text">6. ما هي حالة إنشاء وتجهيز خزانات المياه ومحطة الفلترة الرئيسية؟</div>
+                <span class="question-hint">(يمكن اختيار أكثر من خيار)</span>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="checkbox" name="q_reservoirs_status" value="الخزانات قيد التشييد والإنشاء حالياً">
+                        <span>الخزانات قيد التشييد والإنشاء حالياً</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_reservoirs_status" value="تم إرسال طلب عروض أسعار (RFQs) لتوريد الفلاتر والمحابس">
+                        <span>تم إرسال طلب عروض أسعار (RFQs) لتوريد الفلاتر والمحابس</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_reservoirs_status" value="تعمل المحطة بكفاءة تامة ودون أي مشاكل">
+                        <span>تعمل محطة الفلترة والخزانات بكفاءة تامة ودون أي مشاكل</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_reservoirs_status" value="أخرى" onchange="toggleWriteIn(this, 'reservoir_write')">
+                        <span>أخرى (اكتب التفاصيل)</span>
+                    </label>
+                </div>
+                <div class="write-in-container" id="reservoir_write">
+                    <input type="text" class="write-in-input" placeholder="مثال: الفلاتر الرملية تحتاج لصيانة عاجلة...">
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section-title"><i class="fa-solid fa-flask"></i> رابعاً: وحدة تقطير واستخلاص الزيت العطري</div>
+            
+            <div class="question-group">
+                <div class="question-text">7. ما هي حالة شراء وحدة تقطير الروزماري واستخلاص الزيوت (سعة 200 لتر)؟</div>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="radio" name="q_distiller_status" value="لم يتم الشراء بعد ومؤجلة للعام الثاني (عند بدء الحصاد)" checked>
+                        <span>لم يتم الشراء بعد ومؤجلة للعام الثاني (عند بدء الحصاد الفعلي للروزماري)</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_distiller_status" value="تم التواصل مع الشركات الموردة ومصانع الاستانلس لتوفير عروض الأسعار">
+                        <span>تم التواصل مع الشركات الموردة ومصانع الاستانلس لتوفير عروض الأسعار</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="q_distiller_status" value="تم الشراء والتوريد والتركيب بنجاح في المزرعة">
+                        <span>تم الشراء والتوريد والتركيب بنجاح في المزرعة</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section-title"><i class="fa-solid fa-lemon"></i> خامساً: قطاع المانجو (أحواض 1B و 2B و 4)</div>
+            
+            <div class="question-group">
+                <div class="question-text">8. ما هو وضع أشجار المانجو (كيت ونعومي) وصيانة شبكة الري القديمة؟</div>
+                <span class="question-hint">(يمكن اختيار أكثر من خيار)</span>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="checkbox" name="q_mango_status" value="تم الانتهاء من التقليم والتأهيل الزراعي بالكامل">
+                        <span>تم الانتهاء من التقليم والتأهيل الزراعي بالكامل</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_mango_status" value="شبكة ري المانجو القديمة متهالكة وتحتاج لصيانة طارئة عاجلة">
+                        <span>شبكة ري المانجو القديمة متهالكة وتحتاج لصيانة طارئة عاجلة لإنقاذ الموسم</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_mango_status" value="تم طلب عروض أسعار لصيانة خراطيم ري المانجو ونقاطاتها">
+                        <span>تم طلب عروض أسعار لصيانة خراطيم ري المانجو ونقاطاتها</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_mango_status" value="جاري العمل حالياً على صيانة وتحديث الخطوط">
+                        <span>جاري العمل حالياً على صيانة وتحديث الخطوط</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_mango_status" value="أخرى" onchange="toggleWriteIn(this, 'mango_write')">
+                        <span>أخرى (اكتب التفاصيل والمشكلة)</span>
+                    </label>
+                </div>
+                <div class="write-in-container" id="mango_write">
+                    <input type="text" class="write-in-input" placeholder="اكتب تفاصيل إضافية...">
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section-title"><i class="fa-solid fa-cow"></i> سادساً: قطاع الإنتاج الحيواني (تسمين الخرفان - حوش 3B)</div>
+            
+            <div class="question-group">
+                <div class="question-text">9. ما هو العدد الفعلي الحالي لرؤوس الأغنام الموجودة بالمزرعة حالياً؟</div>
+                <input type="number" id="q_sheep_count" class="write-in-input" style="display:block; max-width: 250px;" placeholder="مثال: 150" value="0">
+            </div>
+
+            <div class="question-group">
+                <div class="question-text">10. ما هي حالة دورة التسمين والتجهيز؟</div>
+                <span class="question-hint">(يمكن اختيار أكثر من خيار)</span>
+                <div class="options-list">
+                    <label class="option-item">
+                        <input type="checkbox" name="q_sheep_status" value="أسعار الأعلاف والخراف تغيرت ونحتاج لتعديل ميزانية الدراسة">
+                        <span>أسعار الأعلاف والخراف تغيرت ونحتاج لتعديل ميزانية الدراسة لتطابق السوق</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_sheep_status" value="العنابر جاهزة ومعدة بالكامل لبدء دورة التسمين">
+                        <span>العنابر جاهزة ومعدة بالكامل لبدء دورة التسمين</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_sheep_status" value="تم بدء دورة التسمين فعلياً بدخول قطيع خراف جديد">
+                        <span>تم بدء دورة التسمين فعلياً بدخول قطيع خراف جديد</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" name="q_sheep_status" value="أخرى" onchange="toggleWriteIn(this, 'sheep_write')">
+                        <span>أخرى (اكتب التفاصيل)</span>
+                    </label>
+                </div>
+                <div class="write-in-container" id="sheep_write">
+                    <input type="text" class="write-in-input" placeholder="اكتب تفاصيل إضافية...">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">حفظ الإجابات وتحديث المنظومة فورياً <i class="fa-solid fa-cloud-arrow-up"></i></button>
+        </form>
+
+        <div class="result-container" id="resultContainer">
+            <i class="fa-solid fa-circle-check success-icon"></i>
+            <h3>تم تحديث المنظومة بنجاح!</h3>
+            <p>لقد استقبل خادم الويب الإجابات وقام بحفظها وتحديث لوحة تحكم المنظومة الرقمية ودراسات التكاليف التأسيسية والتشغيلية فورياً.</p>
+            <a href="index.html" class="btn-dashboard"><i class="fa-solid fa-gauge"></i> الذهاب إلى لوحة التحكم الرئيسية</a>
+        </div>
+    </div>
+
+    <script>
+        // Checkboxes toggle write-in containers
+        function toggleWriteIn(checkbox, containerId) {
+            const container = document.getElementById(containerId);
+            if (checkbox.checked) {
+                container.style.display = 'block';
+                container.querySelector('input').focus();
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
+        // Radio toggle write-in containers
+        function toggleWriteInRadio(radio, containerId) {
+            const container = document.getElementById(containerId);
+            if (radio.checked) {
+                container.style.display = 'block';
+                container.querySelector('input').focus();
+            }
+        }
+
+        // Add change listener to radio group to hide write-ins when not selected
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const name = e.target.name;
+                if (name === 'q_palm_status' && e.target.value !== 'أخرى') {
+                    document.getElementById('palm_write').style.display = 'none';
+                }
+                if (name === 'q_rosemary_status' && e.target.value !== 'أخرى') {
+                    document.getElementById('rosemary_write').style.display = 'none';
+                }
+            });
+        });
+
+        const form = document.getElementById('surveyForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Helper to collect checked values + other text
+            const getCheckboxVals = (name, writeId) => {
+                const checked = [];
+                form.querySelectorAll(`input[name="${name}"]:checked`).forEach(el => {
+                    if (el.value === 'أخرى') {
+                        const otherText = document.getElementById(writeId).querySelector('input').value.trim();
+                        if (otherText) {
+                            checked.push(`أخرى: ${otherText}`);
+                        } else {
+                            checked.push('أخرى');
+                        }
+                    } else {
+                        checked.push(el.value);
+                    }
+                });
+                return checked.join(" | ");
+            };
+
+            const getRadioVal = (name, writeId) => {
+                const selected = form.querySelector(`input[name="${name}"]:checked`);
+                if (!selected) return "";
+                if (selected.value === 'أخرى') {
+                    const otherText = document.getElementById(writeId).querySelector('input').value.trim();
+                    return otherText ? `أخرى: ${otherText}` : 'أخرى';
+                }
+                return selected.value;
+            };
+
+            const data = {
+                "إزالة الموالح": getCheckboxVals("q_citrus_removal", "citrus_removal_write"),
+                "حرث وتجهيز التربة": getCheckboxVals("q_soil_prep", "soil_prep_write"),
+                "فسائل النخيل البرحي": getRadioVal("q_palm_status", "palm_write"),
+                "شتلات الروزماري": getRadioVal("q_rosemary_status", "rosemary_write"),
+                "تنفيذ شبكة الري المزدوجة": getRadioVal("q_irrigation_status", ""),
+                "كفاءة الخزانات والفلترة": getCheckboxVals("q_reservoirs_status", "reservoir_write"),
+                "وحدة التقطير البخارية": getRadioVal("q_distiller_status", ""),
+                "أشجار المانجو": getCheckboxVals("q_mango_status", "mango_write"),
+                "عدد خرفان التسمين": document.getElementById('q_sheep_count').value,
+                "حالة دورة التسمين": getCheckboxVals("q_sheep_status", "sheep_write")
+            };
+
+            // Post to backend server
+            fetch('/api/submit-survey', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Hide form and show success container
+                    form.style.display = 'none';
+                    document.getElementById('resultContainer').style.display = 'block';
+                    document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert('عذراً، حدث خطأ أثناء إرسال البيانات للخادم.');
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting survey:', error);
+                alert('عذراً، تعذر الاتصال بالخادم المحلي لحفظ البيانات.');
+            });
+        });
+    </script>
+</body>
+</html>
